@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import logoNavbar from "@/assets/images/logo-navbar.jpg";
+import logoNavbar from "@/assets/logo.png";
 
 const links = [
   { href: "#sobre", label: "Sobre" },

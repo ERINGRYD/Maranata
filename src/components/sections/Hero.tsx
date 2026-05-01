@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { CalendarDays, MapPin, ArrowRight, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import logoDark from "@/assets/images/logo-dark.png";
+import logoDark from "@/assets/logo.png";
 import { whatsappLink, CONFERENCE, SITE } from "@/lib/site";
 
 export default function Hero() {
