@@ -1,0 +1,56 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email == "eringryd@gmail.com";
+    }
+
+    // Primitive validation helpers
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+    
+    // Schema validation for "cadastro"
+    function isValidCadastro(data) {
+      return data.keys().hasAll(['nome', 'telefone', 'dataCadastro', 'ativo'])
+        && data.nome is string && data.nome.size() > 0 && data.nome.size() <= 100
+        && data.telefone is string && data.telefone.size() > 0 && data.telefone.size() <= 20
+        && data.dataCadastro is string && data.dataCadastro.size() <= 50
+        && data.ativo is bool
+        && (data.keys().hasAll(['email']) == false || (data.email is string && data.email.size() <= 255))
+        && (data.keys().hasAll(['cidade']) == false || (data.cidade is string && data.cidade.size() <= 80))
+        && (data.keys().hasAll(['membro']) == false || (data.membro is string && data.membro.size() <= 10))
+        && (data.keys().hasAll(['acessibilidade']) == false || (data.acessibilidade is string && data.acessibilidade.size() <= 500));
+    }
+
+    match /config/vagas {
+      allow read: if true;
+      allow update: if 
+        incoming().diff(existing()).affectedKeys().hasOnly(['inscritosAtivos']) || isAdmin();
+      allow write: if isAdmin();
+    }
+    match /cadastros/{cadastroId} {
+      allow create: if isValidId(cadastroId) && isValidCadastro(incoming());
+      
+      allow read, list: if isAdmin();
+      allow update: if isAdmin() && isValidId(cadastroId) && isValidCadastro(incoming());
+      
+      // The prompt specific requirement: "Deletar cadastro ✅ Permitido" for both Visitor and Admin.
+      allow delete: if isValidId(cadastroId);
+    }
+  }
+}

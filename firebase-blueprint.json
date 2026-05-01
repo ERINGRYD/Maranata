@@ -1,0 +1,26 @@
+{
+  "entities": {
+    "cadastro": {
+      "title": "Cadastro",
+      "description": "Inscrição de um usuário no evento",
+      "type": "object",
+      "properties": {
+        "nome": { "type": "string" },
+        "email": { "type": "string" },
+        "telefone": { "type": "string" },
+        "cidade": { "type": "string" },
+        "membro": { "type": "string" },
+        "acessibilidade": { "type": "string" },
+        "dataCadastro": { "type": "string" },
+        "ativo": { "type": "boolean" }
+      },
+      "required": ["nome", "telefone", "dataCadastro", "ativo"]
+    }
+  },
+  "firestore": {
+    "cadastros/{cadastroId}": {
+      "schema": { "$ref": "#/entities/cadastro" },
+      "description": "Armazena todos os cadastros/inscrições"
+    }
+  }
+}
