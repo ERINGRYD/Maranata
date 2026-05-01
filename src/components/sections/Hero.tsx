@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { CalendarDays, MapPin, ArrowRight, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import logoDark from "@/assets/images/logo-dark.png";
 import { whatsappLink, CONFERENCE, SITE } from "@/lib/site";
 
 export default function Hero() {
@@ -57,7 +58,7 @@ export default function Hero() {
                 className="flex flex-col items-center text-center w-full"
               >
                 <img
-                  src="/logo-dark.png"
+                  src={logoDark}
                   alt="Escudo da Comunidade Maranata"
                   className="w-44 sm:w-56 md:w-64 h-auto"
                   loading="eager"

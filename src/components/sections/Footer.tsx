@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { SITE } from "@/lib/site";
+import logoFooter from "@/assets/images/logo-footer.jpg";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -8,7 +9,7 @@ export default function Footer() {
       <div className="container py-16 grid gap-12 md:grid-cols-3 items-start">
         <div>
           <img
-            src="/logo-footer.jpg"
+            src={logoFooter}
             alt="Logo Comunidade Maranata"
             className="h-20 w-20 object-contain"
           />

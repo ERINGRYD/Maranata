@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import logoNavbar from "@/assets/images/logo-navbar.jpg";
 
 const links = [
   { href: "#sobre", label: "Sobre" },
@@ -33,7 +34,7 @@ export default function Navbar() {
       >
         <a href="#top" className="flex items-center gap-2.5" aria-label="Comunidade Maranata — início">
           <img
-            src="/logo-navbar.jpg"
+            src={logoNavbar}
             alt=""
             aria-hidden="true"
             className="h-9 w-9 object-contain"
