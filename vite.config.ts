@@ -19,5 +19,15 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     assetsInlineLimit: 0,
+    chunkSizeWarningLimit: 1500,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            return "vendor";
+          }
+        },
+      },
+    },
   }
 }));
