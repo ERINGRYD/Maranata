@@ -16,7 +16,7 @@ export default function Location() {
           <p className="font-display text-xs tracking-[0.4em] uppercase text-accent">
             Onde estamos
           </p>
-          <h2 className="mt-4 font-display text-4xl sm:text-5xl uppercase tracking-tight text-ink-foreground">
+          <h2 className="mt-4 font-display text-4xl sm:text-5xl uppercase tracking-tight text-[#d6d6d6]">
             Venha nos encontrar
           </h2>
           <div className="mx-auto mt-6 h-px w-16 bg-accent" />
@@ -33,11 +33,11 @@ export default function Location() {
             />
           </div>
 
-          <div className="reveal flex flex-col justify-center">
+          <div className="reveal flex flex-col justify-center text-[#121213]">
             <p className="font-display text-[0.7rem] tracking-[0.4em] uppercase text-accent">
               Endereço
             </p>
-            <p className="mt-3 text-xl text-ink-foreground leading-relaxed">
+            <p className="mt-3 text-xl text-[#0a0a0a] leading-relaxed">
               {SITE.address.street}
               <br />
               {SITE.address.cityState}
@@ -57,7 +57,7 @@ export default function Location() {
                 href={whatsappLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 px-5 py-4 border border-ink-foreground/25 text-ink-foreground font-display text-sm tracking-[0.2em] uppercase transition-colors hover:border-accent hover:text-accent"
+                className="flex items-center gap-3 px-5 py-4 border border-ink-foreground/25 text-[#0c0c0d] font-display text-sm tracking-[0.2em] uppercase transition-colors hover:border-accent hover:text-accent"
               >
                 <MessageCircle className="h-4 w-4" />
                 WhatsApp
@@ -66,7 +66,7 @@ export default function Location() {
                 href={SITE.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 px-5 py-4 border border-ink-foreground/25 text-ink-foreground font-display text-sm tracking-[0.2em] uppercase transition-colors hover:border-accent hover:text-accent"
+                className="flex items-center gap-3 px-5 py-4 border border-ink-foreground/25 text-[#141516] font-display text-sm tracking-[0.2em] uppercase transition-colors hover:border-accent hover:text-accent"
               >
                 <Instagram className="h-4 w-4" />
                 {SITE.instagramHandle}

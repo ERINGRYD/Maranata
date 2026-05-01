@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import logoDark from "@/assets/maranata-logo-dark.jpg";
 import { SITE } from "@/lib/site";
 
 export default function Footer() {
@@ -9,7 +8,7 @@ export default function Footer() {
       <div className="container py-16 grid gap-12 md:grid-cols-3 items-start">
         <div>
           <img
-            src={logoDark}
+            src="/regenerated_image_1777640515063.jpg"
             alt="Logo Comunidade Maranata"
             className="h-20 w-20 object-contain"
           />

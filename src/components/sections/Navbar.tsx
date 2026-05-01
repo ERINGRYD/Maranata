@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import logoLight from "@/assets/maranata-logo-light.jpg";
 
 const links = [
   { href: "#sobre", label: "Sobre" },
@@ -34,10 +33,10 @@ export default function Navbar() {
       >
         <a href="#top" className="flex items-center gap-2.5" aria-label="Comunidade Maranata — início">
           <img
-            src={logoLight}
+            src="/regenerated_image_1777640442607.jpg"
             alt=""
             aria-hidden="true"
-            className="h-9 w-9 object-contain mix-blend-multiply"
+            className="h-9 w-9 object-contain"
           />
           <span className={`font-display text-sm tracking-[0.2em] uppercase ${scrolled ? "text-foreground" : "text-ink-foreground"}`}>
             Maranata

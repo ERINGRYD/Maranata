@@ -9,9 +9,10 @@ export const SITE = {
   whatsappDisplay: "(89) 9 9999-9999",
   whatsappMessage: "Olá! Gostaria de saber mais sobre a Comunidade Maranata.",
   address: {
-    street: "Rua Mafrense, 454, Bairro Areia",
-    cityState: "Uruçuí - PI",
-    mapsQuery: "Uruçuí, PI",
+    mapsQuery: "-7.232623078561493, -44.56001821349308",
+    street: "R. Mafrense, 454, Areia",
+    cityState: "Uruçuí - PI"
+    
   },
 };
 

@@ -13,6 +13,16 @@ import {
 import { cadastroService, CadastroData } from "@/services/cadastroService";
 import { auth } from "@/lib/firebase";
 import { signOut } from "firebase/auth";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 function formatDate(iso: string) {
   const d = new Date(iso);
@@ -33,6 +43,7 @@ export default function Cadastros() {
   const [limiteError, setLimiteError] = useState<string | undefined>();
   const [cadastros, setCadastros] = useState<CadastroData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [deleteId, setDeleteId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchCadastros();
@@ -62,16 +73,17 @@ export default function Cadastros() {
     }
   };
 
-  const handleDelete = async (id: string) => {
-    if (!window.confirm("Deseja realmente deletar este cadastro? Esta ação não pode ser desfeita.")) return;
-    
+  const handleDelete = async () => {
+    if (!deleteId) return;
     try {
-      await cadastroService.delete(id);
-      setCadastros(prev => prev.filter(c => c.id !== id));
+      await cadastroService.delete(deleteId);
+      setCadastros(prev => prev.filter(c => c.id !== deleteId));
       toast.success("Cadastro excluído com sucesso.");
     } catch (error) {
       console.error(error);
       toast.error("Erro ao excluir cadastro.");
+    } finally {
+      setDeleteId(null);
     }
   };
 
@@ -350,7 +362,7 @@ export default function Cadastros() {
                           <Power className="w-4 h-4" />
                         </button>
                         <button
-                          onClick={() => handleDelete(c.id!)}
+                          onClick={() => setDeleteId(c.id!)}
                           className="p-2 border border-border text-destructive hover:bg-destructive hover:text-destructive-foreground transition-colors rounded"
                           title="Excluir permanentemente"
                         >
@@ -365,6 +377,23 @@ export default function Cadastros() {
           </div>
         )}
       </section>
+
+      <AlertDialog open={!!deleteId} onOpenChange={(open) => !open && setDeleteId(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Excluir cadastro</AlertDialogTitle>
+            <AlertDialogDescription>
+              Deseja realmente deletar este cadastro? Esta ação não pode ser desfeita.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDelete} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+              Excluir
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </main>
   );
 }
